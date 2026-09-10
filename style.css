@@ -146,5 +146,6 @@ h2{
 
 #Editar{
   display: flex;
+  flex-direction: row;
   justify-content: flex-end;
 }
