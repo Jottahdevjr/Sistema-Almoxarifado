@@ -93,3 +93,4 @@
                 console.error("Erro ao deletar o produto:", error);
             }}
     }
+carregarProdutos(); 
