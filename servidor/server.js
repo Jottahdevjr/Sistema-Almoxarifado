@@ -9,7 +9,7 @@ const allowedOrigins = [
   'https://sistema-almoxarifado-j3bo.onrender.com',                
   'https://sistema-almoxarifado-red.vercel.app',
   'http://localhost:3000'         
-];
+]
 
 const app = express()
 const port = process.env.PORT || 3000
