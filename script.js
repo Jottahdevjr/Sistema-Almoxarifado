@@ -2,7 +2,7 @@
 
     const carregarProdutos = async () =>{
         try{
-            const res = await fetch(API_URL)
+            const res = await fetch(`${API_URL}/produto`)
             const produtos = await res.json()
 
         const conteiner = document.getElementById('listaProdutos')
