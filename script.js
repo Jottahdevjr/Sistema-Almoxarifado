@@ -68,7 +68,7 @@
                 emEstoque : novaQuantidade
             }
             try{
-            await fetch(`${API_URL}/${id}`, {
+            await fetch(`${API_URL}/produto/${id}`, {
                 method:'PUT',
                 headers:{ 'Content-Type': 'application/json'},
                 body:JSON.stringify(dadosAtualizados),
@@ -84,7 +84,7 @@
         const deletarProduto = async (id)=>{
             if(confirm("Deseja realmente apagar")){
                 try{
-                await fetch(`${API_URL}/${id}`,{
+                await fetch(`${API_URL}/produto/${id}`,{
                     method:'DELETE'
                 });
 
