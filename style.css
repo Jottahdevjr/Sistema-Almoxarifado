@@ -97,12 +97,14 @@ body {
   justify-content: space-between;
   color: #38bdf8;
   font-size: 1.25rem;
+  margin-left: 12px;
   margin-bottom: 0.4rem;
 }
 
 .card-produto p {
   display: flex;
   color: #94a3b8;
+  margin-left: 12px;
   font-size: 0.95rem;
   align-items: center;
   justify-content: space-between;
