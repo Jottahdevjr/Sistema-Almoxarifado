@@ -6,8 +6,9 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const allowedOrigins = [
-  'http://localhost:3000',                
-  'https://seu-frontend.vercel.app'         
+  'https://sistema-almoxarifado-j3bo.onrender.com',                
+  'https://sistema-almoxarifado-red.vercel.app',
+  'http://localhost:3000'         
 ];
 
 const app = express()
@@ -15,18 +16,18 @@ const port = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Bloqueado pelo CORS'));
-    }
-  }
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 
 const ConectarBD = async () =>{
     try{
+      if (!process.env.MONGO_URI) {
+            throw new Error("A variável MONGO_URI não está definida!");
+    }
+
         await mongoose.connect(process.env.MONGO_URI);
         console.log('Banco de Dados conectado com sucesso!')
     } catch (Error){
