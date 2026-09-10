@@ -1,4 +1,4 @@
-    const API_URL = 'https://sistema-almoxarifado-j3bo.onrender.com';
+     const API_URL = 'https://sistema-almoxarifado-j3bo.onrender.com';
 
     const carregarProdutos = async () =>{
         try{
@@ -13,15 +13,24 @@
             card.className = 'card-produto'
 
             card.innerHTML = `
-            <h3>${p.nome}</h3>
-            <p>Preço: R$ ${p.preco}</p>
-            <p>Categoria: ${p.categoria}</p>     
-            <p>Quantidade: ${p.emEstoque}</p>
+                <h3>
+                    ${p.nome} 
+                    <button type="button" onclick="editarCampo('${p._id}', 'nome', '${p.nome}', '${p.nome}', ${p.preco}, '${p.categoria}', ${p.emEstoque})" title="Editar nome">✏️</button>
+                </h3>
+                <p>
+                    Preço: R$ ${p.preco} 
+                    <button type="button" onclick="editarCampo('${p._id}', 'preco', ${p.preco}, '${p.nome}', ${p.preco}, '${p.categoria}', ${p.emEstoque})" title="Editar preço">✏️</button>
+                </p>
+                <p>
+                    Categoria: ${p.categoria} 
+                    <button type="button" onclick="editarCampo('${p._id}', 'categoria', '${p.categoria}', '${p.nome}', ${p.preco}, '${p.categoria}', ${p.emEstoque})" title="Editar categoria">✏️</button>
+                </p>     
+                <p>
+                    Quantidade: ${p.emEstoque} 
+                    <button type="button" onclick="editarCampo('${p._id}', 'emEstoque', ${p.emEstoque}, '${p.nome}', ${p.preco}, '${p.categoria}', ${p.emEstoque})" title="Editar quantidade">✏️</button>
+                </p>
 
-            <button id="Editar" onclick ="editarProduto('${p._id}', '${p.nome}', ${p.preco}, ${p.emEstoque})">Editar</button>
-            <button id="Editar" onclick="deletarProduto('${p._id}')">
-            Excluir
-            </button>
+                <button type="button" onclick="deletarProduto('${p._id}')">Excluir</button>
             `;
 
             conteiner.appendChild(card)
@@ -53,33 +62,32 @@
         carregarProdutos();  
         })
 
-        const editarProduto = async (id, nomeAtual, preçoAtual, quantidadeAtual) =>{
-            const novoNome = prompt("Novo nome do produto:", nomeAtual)
-            const novoPreco = prompt("Novo preço do produto:", preçoAtual)
-            const novaQuantidade = prompt("Nova quantidade do produto:", quantidadeAtual)
+        const editarCampo = async (id, campo, valorAtual, nome, preco, categoria, emEstoque) => {
+    const novoValor = prompt(`Editar ${campo}:`, valorAtual);
 
-        if(!novoNome || !novoPreco || !novaQuantidade){
-            alert("Preencha todos os campos para prosseguir")
-            return;
-        }else if(novoNome && novoPreco && novaQuantidade){
-            const dadosAtualizados = {
-                nome : novoNome,
-                preco : Number(novoPreco),
-                emEstoque : novaQuantidade
-            }
-            try{
-            await fetch(`${API_URL}/produto/${id}`, {
-                method:'PUT',
-                headers:{ 'Content-Type': 'application/json'},
-                body:JSON.stringify(dadosAtualizados),
-            })
+    if (novoValor === null || novoValor.trim() === "") return;
 
-            carregarProdutos()
+    const valorTratado = (campo === 'preco' || campo === 'emEstoque') ? Number(novoValor) : novoValor;
 
-        }catch(error){
-            console.error("Erro ao atualizar o produto:", error);
-        }
-        }}
+    const dadosAtualizados = {
+        nome: campo === 'nome' ? valorTratado : nome,
+        preco: campo === 'preco' ? valorTratado : preco,
+        categoria: campo === 'categoria' ? valorTratado : categoria,
+        emEstoque: campo === 'emEstoque' ? valorTratado : emEstoque
+    };
+
+    try {
+        await fetch(`${API_URL}/produto/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dadosAtualizados),
+        });
+
+        carregarProdutos();
+    } catch (error) {
+        console.error(`Erro ao atualizar o campo ${campo}:`, error);
+    }
+};
 
         const deletarProduto = async (id)=>{
             if(confirm("Deseja realmente apagar")){
