@@ -145,7 +145,5 @@ h2{
 }
 
 #Editar{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  margin-left:20px;
 }
