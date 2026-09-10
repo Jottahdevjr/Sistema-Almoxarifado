@@ -5,11 +5,25 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
+const allowedOrigins = [
+  'http://localhost:3000',                
+  'https://seu-frontend.vercel.app'         
+];
+
 const app = express()
 const port = process.env.PORT || 3000
 
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Bloqueado pelo CORS'));
+    }
+  }
+}));
+
 
 const ConectarBD = async () =>{
     try{
