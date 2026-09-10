@@ -112,6 +112,7 @@ body {
 
 .card-produto button {
   margin-top: 1rem;
+  margin-left: 70px;
   padding: 0.6rem;
   border-radius: 6px;
   border: none;
@@ -142,8 +143,4 @@ body {
 
 h2{
   margin-bottom: 28px;
-}
-
-#Editar{
-  margin-left:20px;
 }
