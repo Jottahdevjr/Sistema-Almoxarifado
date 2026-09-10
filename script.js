@@ -15,22 +15,22 @@
             card.innerHTML = `
                 <h3>
                     ${p.nome} 
-                    <button type="button" onclick="editarCampo('${p._id}', 'nome', '${p.nome}', '${p.nome}', ${p.preco}, '${p.categoria}', ${p.emEstoque})" title="Editar nome">✏️</button>
+                    <button id="Editar" type="button" onclick="editarCampo('${p._id}', 'nome', '${p.nome}', '${p.nome}', ${p.preco}, '${p.categoria}', ${p.emEstoque})" title="Editar nome">✏️</button>
                 </h3>
                 <p>
                     Preço: R$ ${p.preco} 
-                    <button type="button" onclick="editarCampo('${p._id}', 'preco', ${p.preco}, '${p.nome}', ${p.preco}, '${p.categoria}', ${p.emEstoque})" title="Editar preço">✏️</button>
+                    <button id="Editar" type="button" onclick="editarCampo('${p._id}', 'preco', ${p.preco}, '${p.nome}', ${p.preco}, '${p.categoria}', ${p.emEstoque})" title="Editar preço">✏️</button>
                 </p>
                 <p>
                     Categoria: ${p.categoria} 
-                    <button type="button" onclick="editarCampo('${p._id}', 'categoria', '${p.categoria}', '${p.nome}', ${p.preco}, '${p.categoria}', ${p.emEstoque})" title="Editar categoria">✏️</button>
+                    <button id="Editar" type="button" onclick="editarCampo('${p._id}', 'categoria', '${p.categoria}', '${p.nome}', ${p.preco}, '${p.categoria}', ${p.emEstoque})" title="Editar categoria">✏️</button>
                 </p>     
                 <p>
                     Quantidade: ${p.emEstoque} 
-                    <button type="button" onclick="editarCampo('${p._id}', 'emEstoque', ${p.emEstoque}, '${p.nome}', ${p.preco}, '${p.categoria}', ${p.emEstoque})" title="Editar quantidade">✏️</button>
+                    <button id="Editar" type="button" onclick="editarCampo('${p._id}', 'emEstoque', ${p.emEstoque}, '${p.nome}', ${p.preco}, '${p.categoria}', ${p.emEstoque})" title="Editar quantidade">✏️</button>
                 </p>
 
-                <button type="button" onclick="deletarProduto('${p._id}')">Excluir</button>
+                <button id="Editar" type="button" onclick="deletarProduto('${p._id}')">Excluir</button>
             `;
 
             conteiner.appendChild(card)

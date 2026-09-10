@@ -143,3 +143,8 @@ body {
 h2{
   margin-bottom: 28px;
 }
+
+#Editar{
+  display: flex;
+  justify-content: flex-end;
+}
